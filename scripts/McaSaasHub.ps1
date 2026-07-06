@@ -7,10 +7,12 @@
     Microsoft SaaS Hub ARM APIs. It does not require Microsoft Scout, Node.js,
     npm, or the companion web UI.
 
-    DISCLAIMER: This tool is provided as-is for customer-managed use. Microsoft
-    provides no warranties, guarantees, or support commitments for this sample.
-    Customers are responsible for validating behavior, permissions, billing
-    impact, and all commerce changes before use.
+    DISCLAIMER: This tool is independent work and is not a Microsoft product,
+    service, endorsed solution, or supported offering. It is provided as-is for
+    customer-managed use. Microsoft has no responsibility for this tool, its
+    operation, or any billing or commerce changes made with it. Customers are
+    responsible for validating behavior, permissions, billing impact, and all
+    commerce changes before use.
 
     Supported actions:
       - Inventory/export of active products across accessible MCA billing accounts
@@ -66,7 +68,7 @@
       -OperationUrl "<azure-async-operation-url>"
 
 .NOTES
-    This script is provided as-is with no Microsoft support commitment.
+    This script is independent work, not a Microsoft product or supported offering.
     Mutating actions intentionally require -Force to reduce accidental commerce changes.
     The script does not print access tokens or store credentials.
 #>
@@ -117,7 +119,7 @@ $BillingApiVersion = '2024-04-01'
 $MarketplaceApiVersion = '2025-05-01'
 $SaasHubApiVersion = '2025-07-01-preview'
 
-Write-Warning 'DISCLAIMER: This tool is provided as-is for customer-managed use. Microsoft provides no warranties, guarantees, or support commitments. Validate permissions, billing impact, and all commerce changes before use.'
+Write-Warning 'DISCLAIMER: This tool is independent work and is not a Microsoft product, endorsed solution, or supported offering. It is provided as-is. Microsoft has no responsibility for this tool or any billing or commerce changes made with it. Validate permissions, billing impact, and all commerce changes before use.'
 
 function Assert-AzCli {
     if (-not (Get-Command az -ErrorAction SilentlyContinue)) {

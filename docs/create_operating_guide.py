@@ -86,7 +86,7 @@ def main():
     add_para(doc, "Package folder: mca-saas-hub-license-manager")
     add_para(
         doc,
-        "Disclaimer: This tool is provided as-is for customer-managed use. Microsoft provides no warranties, guarantees, or support commitments for this sample. Customers are responsible for validating behavior, permissions, billing impact, and all commerce changes before use.",
+        "Disclaimer: This tool is independent work and is not a Microsoft product, service, endorsed solution, or supported offering. It is provided as-is for customer-managed use. Microsoft has no responsibility for this tool, its operation, or any billing or commerce changes made with it. Customers are responsible for validating behavior, permissions, billing impact, and all commerce changes before use.",
     )
 
     doc.add_heading("1. What this tool is", level=1)
@@ -293,7 +293,7 @@ def main():
 
     footer = section.footer.paragraphs[0]
     footer.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    run = footer.add_run("Provided as-is for customer-managed use. Validate before commerce changes.")
+    run = footer.add_run("Independent work. Not a Microsoft product or supported offering. Validate before commerce changes.")
     set_run_font(run, size=8, color=(85, 96, 109))
 
     doc.save(OUT)

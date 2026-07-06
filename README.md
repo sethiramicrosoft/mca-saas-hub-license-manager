@@ -2,7 +2,7 @@
 
 ## Read this first
 
-This tool is provided as-is for customer-managed use. Microsoft provides no warranties, guarantees, or support commitments for this sample. Customers are responsible for validating behavior, permissions, billing impact, and all commerce changes before use.
+This tool is independent work and is not a Microsoft product, service, endorsed solution, or supported offering. It is provided as-is for customer-managed use. Microsoft has no responsibility for this tool, its operation, or any billing or commerce changes made with it. Customers are responsible for validating behavior, permissions, billing impact, and all commerce changes before use.
 
 This tool performs billing and subscription management actions. Some actions can affect billing, renewal behavior, seat counts, and provisioning tenant assignment. Always test with a safe subscription before using it for regular operations.
 
