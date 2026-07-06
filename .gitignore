@@ -1,0 +1,13 @@
+node_modules/
+dist/
+src/server/dist/
+src/server/client/
+.env
+.env.*
+!.env.example
+.azure/*/.env
+npm-debug.log*
+*.local
+validation-*.csv
+docs/__pycache__/
+*.fixed.docx

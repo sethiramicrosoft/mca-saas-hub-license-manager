@@ -1,0 +1,19 @@
+{
+  "name": "mca-saas-hub-portal",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Delegated MCA SaaS Hub license purchase and seat management portal.",
+  "workspaces": [
+    "src/client",
+    "src/server"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace src/client && npm run build --workspace src/server",
+    "start": "npm run start --workspace src/server",
+    "dev": "npm run dev --workspace src/server",
+    "typecheck": "npm run typecheck --workspace src/client && npm run typecheck --workspace src/server"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
