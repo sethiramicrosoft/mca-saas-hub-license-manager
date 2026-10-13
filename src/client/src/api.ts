@@ -123,10 +123,10 @@ export type AssociatedTenant = {
   name: string;
   type: string;
   properties: {
-    friendlyName?: string;
+    displayName?: string;
     tenantId?: string;
     billingManagementState?: string;
-    provisioningState?: string;
+    provisioningManagementState?: string;
   };
 };
 

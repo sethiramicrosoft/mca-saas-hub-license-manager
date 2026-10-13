@@ -64,6 +64,23 @@ export async function armRequest<T>(
   };
 }
 
+export async function armRequestAllPages<T>(
+  token: string,
+  path: string,
+  init: RequestInit = {}
+): Promise<T[]> {
+  const items: T[] = [];
+  let nextPath: string | undefined = path;
+
+  while (nextPath) {
+    const result: ArmResponse<{ value?: T[]; nextLink?: string }> = await armRequest(token, nextPath, init);
+    items.push(...(result.body.value ?? []));
+    nextPath = result.body.nextLink;
+  }
+
+  return items;
+}
+
 async function fetchWithRetry(url: string, init: RequestInit): Promise<Response> {
   const maxAttempts = 3;
 

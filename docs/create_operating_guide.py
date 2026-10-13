@@ -224,7 +224,7 @@ def main():
             ["List billing profiles", "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles?api-version=2024-04-01", "GET", "Used for scope selection."],
             ["List invoice sections", "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections?api-version=2024-04-01", "GET", "Used for invoice section selection."],
             ["List billing subscriptions", "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingSubscriptions?api-version=2024-04-01", "GET", "Source for inventory and existing subscriptions. Tool keeps only Active rows."],
-            ["List associated tenants", "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/associatedTenants?api-version=2020-11-01-privatepreview", "GET", "Used for move tenant target list."],
+            ["List associated tenants", "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/associatedTenants?api-version=2024-04-01", "GET", "Used for move tenant target list."],
             ["Change seats", "/providers/Microsoft.SaaSHub/saasResources/{billingSubscriptionName}?api-version=2025-07-01-preview", "PATCH", "Body uses properties.quantity."],
             ["Recurring billing", "/providers/Microsoft.SaaSHub/saasResources/{billingSubscriptionName}?api-version=2025-07-01-preview", "PATCH", "Body uses properties.autoRenew set to On or Off."],
             ["Move tenant", "/providers/Microsoft.SaaSHub/saasResources/{billingSubscriptionName}?api-version=2025-07-01-preview", "PATCH", "Body uses properties.provisioningTenantId."],

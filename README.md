@@ -423,7 +423,7 @@ The script does not create its own identity. It uses the signed-in Azure CLI use
 | List billing profiles | `/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles?api-version=2024-04-01` | GET |
 | List invoice sections | `/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections?api-version=2024-04-01` | GET |
 | List billing subscriptions | `/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingSubscriptions?api-version=2024-04-01` | GET |
-| List associated tenants | `/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/associatedTenants?api-version=2020-11-01-privatepreview` | GET |
+| List associated tenants | `/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/associatedTenants?api-version=2024-04-01` | GET |
 | Change seats | `/providers/Microsoft.SaaSHub/saasResources/{billingSubscriptionName}?api-version=2025-07-01-preview` | PATCH |
 | Recurring billing on or off | `/providers/Microsoft.SaaSHub/saasResources/{billingSubscriptionName}?api-version=2025-07-01-preview` | PATCH |
 | Move subscription tenant | `/providers/Microsoft.SaaSHub/saasResources/{billingSubscriptionName}?api-version=2025-07-01-preview` | PATCH |

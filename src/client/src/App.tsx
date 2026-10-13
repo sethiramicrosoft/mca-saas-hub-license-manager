@@ -582,9 +582,9 @@ export function App() {
                 <option
                   key={tenant.name}
                   value={tenant.properties.tenantId ?? tenant.name}
-                  disabled={tenant.properties.provisioningState !== "Active"}
+                  disabled={tenant.properties.provisioningManagementState !== "Active"}
                 >
-                  {tenant.properties.friendlyName ?? tenant.name} - {tenant.properties.provisioningState}
+                  {tenant.properties.displayName ?? tenant.name} - {tenant.properties.provisioningManagementState ?? "Unknown"}
                 </option>
               ))}
             </select>

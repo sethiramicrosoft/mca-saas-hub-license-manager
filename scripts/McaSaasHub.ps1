@@ -425,7 +425,7 @@ switch ($Action) {
 
     'ListAssociatedTenants' {
         if (-not $BillingAccountName) { throw 'BillingAccountName is required.' }
-        Invoke-ArmJson -Method GET -PathOrUrl "/providers/Microsoft.Billing/billingAccounts/$(Encode-Part $BillingAccountName)/associatedTenants?api-version=2020-11-01-privatepreview"
+        Invoke-ArmJson -Method GET -PathOrUrl "/providers/Microsoft.Billing/billingAccounts/$(Encode-Part $BillingAccountName)/associatedTenants?api-version=$BillingApiVersion"
         break
     }
 

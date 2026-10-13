@@ -2,6 +2,7 @@ import { Router } from "express";
 import { z } from "zod";
 import {
   armRequest,
+  armRequestAllPages,
   BILLING_API_VERSION,
   encodePathSegment,
   resolveArmToken,
@@ -53,12 +54,12 @@ export function createApiRouter(): Router {
 
       for (const account of accountsResult.body.value ?? []) {
         try {
-          const subscriptionsResult = await armRequest<ListResult<BillingSubscription>>(
+          const subscriptions = await armRequestAllPages<BillingSubscription>(
             token,
             `/providers/Microsoft.Billing/billingAccounts/${encodePathSegment(account.name)}/billingSubscriptions?api-version=${BILLING_API_VERSION}`
           );
 
-          for (const subscription of (subscriptionsResult.body.value ?? []).filter(isActiveBillingSubscription)) {
+          for (const subscription of subscriptions.filter(isActiveBillingSubscription)) {
             inventory.push(mapInventoryItem(account, subscription));
           }
         } catch (error) {
@@ -112,18 +113,19 @@ export function createApiRouter(): Router {
     try {
       const token = await resolveArmToken(req.header("authorization"));
       const billingAccountName = encodePathSegment(req.params.billingAccountName);
-      const result = await armRequest<ListResult<BillingSubscription>>(
+      const subscriptions = await armRequestAllPages<BillingSubscription>(
         token,
         `/providers/Microsoft.Billing/billingAccounts/${billingAccountName}/billingSubscriptions?api-version=${BILLING_API_VERSION}`
       );
       const invoiceSectionId = typeof req.query.invoiceSectionId === "string" ? req.query.invoiceSectionId : "";
 
       res.json({
-        ...result.body,
         value: (invoiceSectionId
-          ? result.body.value.filter((item) => item.properties.invoiceSectionId?.toLowerCase() === invoiceSectionId.toLowerCase())
-          : result.body.value
-        ).filter(isActiveBillingSubscription)
+          ? subscriptions.filter((item) => item.properties.invoiceSectionId?.toLowerCase() === invoiceSectionId.toLowerCase())
+          : subscriptions
+        )
+          .filter(isActiveBillingSubscription)
+          .filter(isSeatBasedBillingSubscription)
       });
     } catch (error) {
       next(error);
@@ -139,14 +141,14 @@ export function createApiRouter(): Router {
         name: string;
         type: string;
         properties: {
-          friendlyName?: string;
+          displayName?: string;
           tenantId?: string;
           billingManagementState?: string;
-          provisioningState?: string;
+          provisioningManagementState?: string;
         };
       }>>(
         token,
-        `/providers/Microsoft.Billing/billingAccounts/${billingAccountName}/associatedTenants?api-version=2020-11-01-privatepreview`
+        `/providers/Microsoft.Billing/billingAccounts/${billingAccountName}/associatedTenants?api-version=${BILLING_API_VERSION}`
       );
 
       res.json(result.body);
@@ -289,6 +291,10 @@ function mapInventoryItem(account: BillingAccount, subscription: BillingSubscrip
 
 function isActiveBillingSubscription(subscription: BillingSubscription): boolean {
   return subscription.properties.status?.toLowerCase() === "active";
+}
+
+function isSeatBasedBillingSubscription(subscription: BillingSubscription): boolean {
+  return subscription.properties.productCategory === "SeatBased";
 }
 
 function classifyServiceCategory(subscription: BillingSubscription, productName: string | undefined): "Azure" | "Non-Azure" {
